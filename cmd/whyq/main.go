@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"net/http/cookiejar"
 	"os"
-	"strings"
 	"time"
 
 	"github.com/wijayaerick/whyq-go"
@@ -36,14 +35,8 @@ func run() int {
 	}
 
 	client := whyq.NewClient(&http.Client{Jar: jar}, "https://www.whyq.sg")
-	loginResp, err := client.Login(ctx, conf.Email, conf.Password)
-	if err != nil {
+	if err := client.Login(ctx, conf.Email, conf.Password); err != nil {
 		logger.ErrorCtx(ctx, "failed to login", "err", err)
-		return 1
-	}
-
-	if !strings.EqualFold(loginResp.Status, "success") {
-		logger.ErrorCtx(ctx, "failed to login", "err", loginResp.Message)
 		return 1
 	}
 
