@@ -51,6 +51,11 @@ func run() int {
 		logger.ErrorCtx(ctx, "failed to get orders", "err", err)
 		return 1
 	}
+
+	if len(orders) == 0 {
+		fmt.Printf("No order.")
+		return 0
+	}
 	for i, order := range orders {
 		fmt.Printf("%2d. %v %v %v\n", i+1,
 			ColorText(Green, order.Date.Weekday().String()[:3]),
