@@ -30,25 +30,25 @@ func run() int {
 
 	jar, err := cookiejar.New(&cookiejar.Options{PublicSuffixList: publicsuffix.List})
 	if err != nil {
-		logger.ErrorCtx(ctx, "failed to create cookie jar", "err", err)
+		logger.ErrorContext(ctx, "failed to create cookie jar", "err", err)
 		return 1
 	}
 
 	client := whyq.NewClient(&http.Client{Jar: jar}, "https://www.whyq.sg")
 	if err := client.Login(ctx, conf.Email, conf.Password); err != nil {
-		logger.ErrorCtx(ctx, "failed to login", "err", err)
+		logger.ErrorContext(ctx, "failed to login", "err", err)
 		return 1
 	}
 
 	defer func(ctx context.Context) {
 		if err := client.Logout(ctx); err != nil {
-			logger.ErrorCtx(ctx, "failed to logout", "err", err)
+			logger.ErrorContext(ctx, "failed to logout", "err", err)
 		}
 	}(ctx)
 
 	orders, err := client.Orders(ctx)
 	if err != nil {
-		logger.ErrorCtx(ctx, "failed to get orders", "err", err)
+		logger.ErrorContext(ctx, "failed to get orders", "err", err)
 		return 1
 	}
 

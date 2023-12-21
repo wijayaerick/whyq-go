@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/sethvargo/go-envconfig"
-	"golang.org/x/exp/slog"
+	"log/slog"
 )
 
 type Config struct {
