@@ -11,9 +11,10 @@ import (
 	"syscall"
 	"time"
 
+	"golang.org/x/net/publicsuffix"
+
 	"github.com/wijayaerick/whyq-go"
 	"github.com/wijayaerick/whyq-go/internal"
-	"golang.org/x/net/publicsuffix"
 )
 
 func main() {

@@ -2,10 +2,10 @@ package internal
 
 import (
 	"context"
+	"log/slog"
 	"os"
 
 	"github.com/sethvargo/go-envconfig"
-	"log/slog"
 )
 
 type Config struct {

@@ -3,11 +3,12 @@ package whyq
 import (
 	"context"
 	"errors"
-	"golang.org/x/net/html"
 	"io"
 	"net/http"
 	"strings"
 	"time"
+
+	"golang.org/x/net/html"
 )
 
 type Order struct {
