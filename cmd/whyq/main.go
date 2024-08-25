@@ -37,7 +37,7 @@ func run() int {
 		return 1
 	}
 
-	client := whyq.NewClient(&http.Client{Jar: jar}, "https://www.whyq.sg")
+	client := whyq.NewClient(&http.Client{Jar: jar}, conf.BaseURL)
 	if err := client.Login(ctx, conf.Email, conf.Password); err != nil {
 		logger.ErrorContext(ctx, "failed to login", "err", err)
 		return 1
