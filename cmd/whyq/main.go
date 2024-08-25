@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"net/http/cookiejar"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
 	"github.com/wijayaerick/whyq-go"
@@ -19,7 +21,8 @@ func main() {
 }
 
 func run() int {
-	ctx := context.Background()
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
 
 	conf, err := internal.LoadConfig(ctx)
 	if err != nil {
