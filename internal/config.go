@@ -10,8 +10,8 @@ import (
 
 type Config struct {
 	BaseURL  string `env:"WHYQ_URL,required"`
-	Email    string `env:"WHYQ_EMAIL"`
-	Password string `env:"WHYQ_PASSWORD"`
+	Email    string `env:"WHYQ_EMAIL,required"`
+	Password string `env:"WHYQ_PASSWORD,required"`
 }
 
 func LoadConfig(ctx context.Context) (Config, error) {
